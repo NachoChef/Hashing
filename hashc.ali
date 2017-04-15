@@ -1,0 +1,57 @@
+V "GNAT Lib v2016"
+A -gnatc
+A -mtune=generic
+A -march=pentium4
+P NO ZX
+
+RN
+RV NO_IO
+RV NO_LONG_LONG_INTEGERS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U hashc%s		hashc.ads		0e339a3f NE OO PK
+W ada%s			ada.ads			ada.ali
+Z ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.unchecked_conversion%s
+W direct_io%s
+Z interfaces%s		interfac.ads		interfac.ali
+Z interfaces.c_streams%s  i-cstrea.adb		i-cstrea.ali
+Z system%s		system.ads		system.ali
+Z system.direct_io%s	s-direio.adb		s-direio.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-direio.ads		20160516092928 5842da07 ada.direct_io%s
+D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D directio.ads		20160516092928 fc913ad7 direct_io%s
+D hashc.ads		20170328002240 3324da3a hashc%s
+D interfac.ads		20160516092928 5ab55268 interfaces%s
+D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
+D system.ads		20160516092930 2da59038 system%s
+D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
+D s-direio.ads		20160516092926 7c86ede3 system.direct_io%s
+D s-ficobl.ads		20160516092932 078245e4 system.file_control_block%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 8|1r6 1r23 3r6 8r29
+X 5 a-textio.ads
+49K13*Text_IO 471e16 8|1w10 1r27
+X 6 a-unccon.ads
+20v14*Unchecked_Conversion 8|3w10 8r33
+X 7 directio.ads
+24k17*Direct_IO 8|2w6 9r28
+X 8 hashc.ads
+5K9*hashC 10l5 10e10
+6A12*hElement{string}<integer> 7r47 9r38
+7A9*hTable(6A12)<integer>
+8V13*char2Int[6|20]{long_integer}
+9K12*hashFile[2|43]
+
