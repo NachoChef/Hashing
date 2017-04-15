@@ -11,6 +11,7 @@ package body ada_main is
    E013 : Short_Integer; pragma Import (Ada, E013, "system__soft_links_E");
    E023 : Short_Integer; pragma Import (Ada, E023, "system__exception_table_E");
    E087 : Short_Integer; pragma Import (Ada, E087, "ada__io_exceptions_E");
+   E108 : Short_Integer; pragma Import (Ada, E108, "ada__numerics_E");
    E046 : Short_Integer; pragma Import (Ada, E046, "ada__strings_E");
    E048 : Short_Integer; pragma Import (Ada, E048, "ada__strings__maps_E");
    E052 : Short_Integer; pragma Import (Ada, E052, "ada__strings__maps__constants_E");
@@ -22,7 +23,7 @@ package body ada_main is
    E097 : Short_Integer; pragma Import (Ada, E097, "system__file_io_E");
    E100 : Short_Integer; pragma Import (Ada, E100, "system__finalization_root_E");
    E098 : Short_Integer; pragma Import (Ada, E098, "ada__finalization_E");
-   E124 : Short_Integer; pragma Import (Ada, E124, "system__direct_io_E");
+   E132 : Short_Integer; pragma Import (Ada, E132, "system__direct_io_E");
    E061 : Short_Integer; pragma Import (Ada, E061, "system__object_reader_E");
    E041 : Short_Integer; pragma Import (Ada, E041, "system__dwarf_lines_E");
    E017 : Short_Integer; pragma Import (Ada, E017, "system__secondary_stack_E");
@@ -51,7 +52,7 @@ package body ada_main is
          E097 := E097 - 1;
          F2;
       end;
-      E124 := E124 - 1;
+      E132 := E132 - 1;
       declare
          procedure F3;
          pragma Import (Ada, F3, "system__direct_io__finalize_spec");
@@ -154,6 +155,8 @@ package body ada_main is
       E023 := E023 + 1;
       Ada.Io_Exceptions'Elab_Spec;
       E087 := E087 + 1;
+      Ada.Numerics'Elab_Spec;
+      E108 := E108 + 1;
       Ada.Strings'Elab_Spec;
       E046 := E046 + 1;
       Ada.Strings.Maps'Elab_Spec;
@@ -172,7 +175,7 @@ package body ada_main is
       Ada.Finalization'Elab_Spec;
       E098 := E098 + 1;
       System.Direct_Io'Elab_Spec;
-      E124 := E124 + 1;
+      E132 := E132 + 1;
       System.Object_Reader'Elab_Spec;
       System.Dwarf_Lines'Elab_Spec;
       System.File_Io'Elab_Body;

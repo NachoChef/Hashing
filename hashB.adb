@@ -1,59 +1,86 @@
 with Ada.Direct_IO;
+with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 package body hashB is
 
-   procedure mainMem (inFile : String; outFile : String) is
+   procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe) is
       input : hashIO.File_Type;
       output : Ada.Text_IO.File_Type;
+      UB : Integer := Integer(Float'Floor(Float(size) * percentFull));     
+      
    begin
       Open(input, in_file, inFile);
       Reset(input);
       declare
          nullRec : hashRecord := (Item => "                ",  loc => 0, probes => 0);
-         myTable : hashTable(1..128) := (others => nullRec);
+         myTable : hashTable(0..size-1) := (others => nullRec);
          
       begin
-         for i in 1..51 loop
+         for i in 2..UB+1 loop
             declare
                hRec : hashRecord;
                temp : hRead;
+               offset : Integer := 0;
+               R : Integer := 1;
+               div : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
             begin
                Read(input, temp, int2Cnt(i));
                hRec.Item := temp(1..16);
                hRec.loc := getKey(hRec.Item);
-               while myTable(hRec.loc + (hRec.probes - 1)).Item /= nullRec.Item loop
+               
+               while myTable((hRec.loc + offset) mod size).Item /= nullRec.Item loop
+                  if probeType = LINEAR then
+                     offset := offset + 1;
+                  else
+                     R := (R * 5) mod div;
+                     offset := offset + (R/4);
+                  end if;
+                  
                   hRec.probes := hRec.probes + 1;
                end loop;
-               myTable(hRec.loc+hRec.probes-1) := hRec;
+               myTable((hRec.loc + offset) mod size) := hRec;
             end;
          end loop; 
          
-         for i in 1..128 loop
+         for i in 0..size-1 loop
             if myTable(i).Item /= nullRec.Item then
-               put(Integer'Image(i) & " is "); put(myTable(i).Item); put("Probes:" & Integer'Image(myTable(i).probes)); New_Line;
+               put(Integer'Image(i) & " is "); put(myTable(i).Item); put("Original location:" & Integer'Image(myTable(i).loc));put("     Probes:" & Integer'Image(myTable(i).probes)); New_Line;
             else
                put_line(Integer'Image(i) & " is NULL");
             end if;
          end loop; 
-         getAvg(input, myTable, 1, 30);
-         getAvg(input, myTable, 21, 51); 
-         getTheor(input, myTable);
+         getAvg(input, myTable, 2, 31, probeType);
+         getAvg(input, myTable, 22, 52, probeType); 
+         getTheor(input, myTable, probeType); New_Line;
       end;
+      Close(input);
    end mainMem;
    
-   procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer) is
+   procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; probeType : probe) is
       min : Integer := myTable'Last+1;
       max : Integer := 1;
       avg : Float := 0.0;
+      div : Float := Float(upper-lower+1);
+      size : Integer := myTable'Last - myTable'First + 1;
    begin
       for i in lower..upper loop
          declare
             hRec : hashRecord;
             temp : hRead;
+            offset : Integer := 0;
+            R : Integer := 1;
+            divisor : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
+
          begin
             Read(input, temp, int2Cnt(i));
             hRec.Item := temp(1..16);
             hRec.loc := getKey(hRec.Item);
-            while myTable(hRec.loc + (hRec.probes - 1)).Item /= hRec.Item loop
+            while myTable((hRec.loc + offset) mod size).Item /= hRec.Item loop
+               if probeType = LINEAR then
+                  offset := offset + 1;
+               else
+                  R := (R * 5) mod divisor;
+                  offset := offset + (R/4);
+               end if;
                hRec.probes := hRec.probes + 1;
             end loop;
             if hRec.probes < min then
@@ -61,18 +88,19 @@ package body hashB is
             elsif hRec.probes > max then
                max := hRec.probes;
             end if;
-            avg := avg + (Float(hRec.probes)/Float(upper-lower+1));
+            avg := avg + (Float(hRec.probes)/div);
          end;
       end loop;
+      put_line("----------------");
       put_line("Stats for" & Integer'Image(lower) & " to" & Integer'Image(upper));
       put_line("Min:" & Integer'Image(min));
       put_line("Max:" & Integer'Image(max));
       put_line("Avg:" & Integer'Image(Integer(Float'Unbiased_Rounding(avg))));
    end getAvg;
    
-   procedure getTheor (input : hashIO.File_Type; myTable : hashTable) is
+   procedure getTheor (input : hashIO.File_Type; myTable : hashTable; probeType : probe) is
       keys : integer := 0;
-      TS : integer := myTable'First - myTable'Last + 1;
+      TS : integer := myTable'Last - myTable'First + 1;
       alpha, E : Float;
    begin
       for i in myTable'Range loop
@@ -80,8 +108,13 @@ package body hashB is
             keys := keys + 1;                  
          end if;
       end loop;
-      alpha := Float(keys) / Float(TS);
-      E := (1.0 - alpha / 2.0) / (1.0 - alpha);
+      alpha := (Float(keys) / Float(TS));
+      if probeType = LINEAR then
+         E := (1.0 - alpha / 2.0) / (1.0 - alpha);
+      else
+         E := -(1.0 / alpha) * (Log(1.0 - alpha));
+      end if;
+      put_line("----------------");
       put_line("Keys:" & Integer'Image(keys));
       put_line("Load level:" & Float'Image(alpha));
       put_line("Expected average probes:" & Float'Image(E));
@@ -106,24 +139,11 @@ package body hashB is
    
    procedure storeItem (Item : hElement; file : hashIO.File_Type) is
       myRecord : hashRecord := (Item, getKey(Item), 1); --initialization
-      temp : hashRecord;
+      --temp : hashRecord;
    begin
       --if Read(file, 
       --Write(file, myRecord, getKey(Item));
       null;
    end;
-   
-   function getItem (Item : hElement; file : hashIO.File_Type) return Integer is
-      result : hashRecord;
-      probes : integer := 0;
-      loc : hashIO.Count := int2Cnt(getKey(Item));
-   begin
-      loop
-         exit when result.Item = Item;
-         --Read(file, result, loc + probes);
-         probes := probes + 1;
-      end loop; 
-      return cnt2Int(loc);   
-   end getItem;
    
 end hashB;

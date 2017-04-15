@@ -4,11 +4,12 @@ A -g
 P ZX
 
 RN
+RV NO_FLOATING_POINT
 RV NO_IO
 RV NO_UNCHECKED_CONVERSION
 RV SPARK_05
 
-U test%b		test.adb		1169aacd NE OO SU IL
+U test%b		test.adb		2eae45eb NE OO SU IL
 W ada%s			ada.ads			ada.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W ada.unchecked_conversion%s
@@ -24,7 +25,7 @@ D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
 D directio.ads		20160516092928 fc913ad7 direct_io%s
-D hashb.ads		20170415053958 40a962da hashb%s
+D hashb.ads		20170415160952 45e9c6b8 hashb%s
 D interfac.ads		20160516092928 5ab55268 interfaces%s
 D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
 D system.ads		20160516092930 2da59038 system%s
@@ -40,18 +41,20 @@ D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
 D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
-D test.adb		20170415054058 6cd78812 test%b
+D test.adb		20170415161734 5650c356 test%b
 X 1 ada.ads
 16K9*Ada 19e8 26|2r6 2r34 3r6
 X 7 a-textio.ads
 49K13*Text_IO 471e16 26|2w10 2r38
+263U14*Put_Line 26|14s4
 X 8 a-unccon.ads
 20v14*Unchecked_Conversion 26|3w10
 X 9 directio.ads
 24k17*Direct_IO 26|2w19
 X 10 hashb.ads
-5K9*hashB 31e10 26|4w6 8r4
-24U14*mainMem 26|8s10
+5K9*hashB 31e10 26|4w6 15r4 15r48 16r4 16r48
+19n27*random{19E9} 26|15r54 16r54
+25U14*mainMem 26|15s10 16s10
 X 26 test.adb
-6U11*test 6b11 14l5 14t9
+6U11*test 6b11 17l5 17t9
 

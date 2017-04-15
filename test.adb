@@ -5,15 +5,13 @@ with hashB;
 
 procedure test is
 begin
-   hashB.mainMem("Words200D16.txt", "out.txt");
-   -- Open(file, in_file, "Words200D16.txt");
---    for i in 1..30 loop
---       Read(file, temp, int2Cnt(i));
---       put_line(temp(1..16));
---    end loop;
+   -- put_line("Part A:");
+--    hashB.mainMem("Words200D16.txt", 128, 0.40, hashB.linear);
+--    
+--    put_line("Part B:");
+--    hashB.mainMem("Words200D16.txt", 128, 0.87, hashB.linear);
+   
+   put_line("Part C:");
+   hashB.mainMem("Words200D16.txt", 128, 0.40, hashB.random);
+   hashB.mainMem("Words200D16.txt", 128, 0.87, hashB.random);
 end test;
-
--- procedure Read
---   (File : in File_Type;
---    Item : out Element_Type;
---    From : in Positive_Count);
