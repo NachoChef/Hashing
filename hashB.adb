@@ -2,7 +2,7 @@ with Ada.Direct_IO;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 package body hashB is
 
-   procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe) is
+   procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash) is
       input : hashIO.File_Type;
       output : Ada.Text_IO.File_Type;
       UB : Integer := Integer(Float'Floor(Float(size) * percentFull));     
@@ -25,7 +25,11 @@ package body hashB is
             begin
                Read(input, temp, int2Cnt(i));
                hRec.Item := temp(1..16);
-               hRec.loc := getKey(hRec.Item);
+               if hashType = yours then
+                  hRec.loc := getKey(hRec.Item);
+               else
+                  hRec.loc := myKey(hRec.Item, size);
+               end if;
                
                while myTable((hRec.loc + offset) mod size).Item /= nullRec.Item loop
                   if probeType = LINEAR then
@@ -48,14 +52,14 @@ package body hashB is
                put_line(Integer'Image(i) & " is NULL");
             end if;
          end loop; 
-         getAvg(input, myTable, 2, 31, probeType);
-         getAvg(input, myTable, 22, 52, probeType); 
+         getAvg(input, myTable, 2, 31, probeType, hashType);
+         getAvg(input, myTable, UB-30, UB, probeType, hashType); 
          getTheor(input, myTable, probeType); New_Line;
       end;
       Close(input);
    end mainMem;
    
-   procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; probeType : probe) is
+   procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; probeType : probe; hashType : hash) is
       min : Integer := myTable'Last+1;
       max : Integer := 1;
       avg : Float := 0.0;
@@ -73,7 +77,11 @@ package body hashB is
          begin
             Read(input, temp, int2Cnt(i));
             hRec.Item := temp(1..16);
-            hRec.loc := getKey(hRec.Item);
+            if hashType = yours then
+               hRec.loc := getKey(hRec.Item);
+            else
+               hRec.loc := myKey(hRec.Item, size);
+            end if;
             while myTable((hRec.loc + offset) mod size).Item /= hRec.Item loop
                if probeType = LINEAR then
                   offset := offset + 1;
@@ -131,11 +139,23 @@ package body hashB is
    function getKey (Item : hElement) return Integer is
       temp : Unsigned_64;
    begin
+      --shift left 8 bits
       temp := ((str2Uns(Item(1..2)) + str2Uns(Item(6..7)))*256);
       temp := temp + char2Uns(Item(13));
+      --first 8 bits is now above char
       temp := temp mod 128;
+      --extract first 8 bits
       return uns2Int(temp);
    end getKey;
+   
+   function myKey (Item : hElement; TS : Integer) return Integer is
+      temp : Unsigned_64;
+   begin
+      temp := mystr2Uns(Item(1..8)) * mystr2Uns(Item(9..16)); --square
+      temp := temp XOR 9999999900000001;  --scramble (this number is prime)
+      temp := temp / 100000;    --shift dec integer right 5 places
+      return uns2Int(temp mod int2Uns(TS));  --extract first N bytes, where Log2N = TS
+   end myKey;
    
    procedure storeItem (Item : hElement; file : hashIO.File_Type) is
       myRecord : hashRecord := (Item, getKey(Item), 1); --initialization
