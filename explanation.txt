@@ -1,0 +1,11 @@
+A.) The hashing function, as given, adds the combination of the 1st and 2nd characters to the 6th and 7th characters, then shifts the result left 8 bits by multiplying by 256 (2^8).
+Following this, the 13th character is added to the previous result. As the character is 8 bits, it replaces the first 8 bits that were just shifted left. The value is then mod 128, thus extracting the first 7 bits.
+It can be seen from inspection then that this hashing function will always yield the value of the 13th character. Because the keys are strings that are left-justified, the 13th character is almost always a space, value 32.
+Utilizing linear probe, we expect to see primary clustering. Combined with the results of the hashing function, the result is one large primary cluster. 
+Contrasting with the expected results of 1.33 probes per key, for the first 30 keys the average probe count is 15 and for the final 30 keys the average probe count is 35. 
+This is a direct result of a poor hashing function, as the theoretical results hold for a perfect or near perfect hash function. The large discrepency exhibits just how poorly the function performs at producing unique values. 
+
+B.) With the previously discussed defects, the hashing function truly shows how poorly it performs as the table becomes fuller. Even good hashing functions are only efficient up to about 75% load level, so a poor function at 87% truly exhibits problems.
+The data appears in the hash table as a very large primary cluster, wrapping around to the beginning of the table as in this case the table size and mod value are the same.
+
+C.) 

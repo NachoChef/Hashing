@@ -18,6 +18,7 @@ package hashB is
    package hashIO is new Direct_IO(hRead);
    use hashIO;
    type hashTable is array(Integer range <>) of hashRecord;
+   
    type probe is (linear, random);
    type hash is (mine, yours);
    function str2Uns is new Ada.Unchecked_Conversion(slice, Unsigned_64);

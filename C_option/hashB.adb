@@ -1,18 +1,19 @@
 with Ada.Direct_IO;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
-
 package body hashB is
 
    procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash) is
       input : hashIO.File_Type;
       output : Ada.Text_IO.File_Type;
       UB : Integer := Integer(Float'Floor(Float(size) * percentFull));     
+      
    begin
       Open(input, in_file, inFile);
       Reset(input);
       declare
          nullRec : hashRecord := (Item => "                ",  loc => 0, probes => 0);
          myTable : hashTable(0..size-1) := (others => nullRec);
+         
       begin
          for i in 2..UB+1 loop
             declare
