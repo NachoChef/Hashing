@@ -16,18 +16,11 @@ procedure test is
 begin
 --     put_line("Part A:");
 --     hashB.mainMem("Words200D16.txt", 128, 0.40, linear, yours);
---     hashB.mainMem("Words200D16.txt", 128, 0.87, linear, yours);
      
    put_line("Part B:");
-   hashB.mainMem("Words200D16.txt", 128, 0.40, random, yours);
    hashB.mainMem("Words200D16.txt", 128, 0.87, random, yours);
 --    
 --    put_line("Part C:");
---    hashB.mainMem("Words200D16.txt", 128, 0.40, hashB.random, hashB.mine);
---    hashB.mainMem("Words200D16.txt", 128, 0.87, hashB.random, hashB.mine);
-   -- loop
---       get(str);
---       exit when str(1) = '0';
---       put_line(Integer'Image(hashB.myKey(str, 128)));
---    end loop;
+--    hashB.mainMem("Words200D16.txt", 128, 0.40, random, mine);
+--    hashB.mainMem("Words200D16.txt", 128, 0.87, random, mine);
 end test;

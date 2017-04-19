@@ -8,4 +8,4 @@ This is a direct result of a poor hashing function, as the theoretical results h
 B.) With the previously discussed defects, the hashing function truly shows how poorly it performs as the table becomes fuller. Even good hashing functions are only efficient up to about 75% load level, so a poor function at 87% truly exhibits problems.
 The data appears in the hash table as a very large primary cluster, wrapping around to the beginning of the table as in this case the table size and mod value are the same.
 
-C.) 
+C.) While still hashing almost all keys to the same value, the keys are more spread out due to random probe generation which is also evidenced by secondary clustering in the hash table.
