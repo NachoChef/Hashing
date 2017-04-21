@@ -19,8 +19,11 @@ begin
      
    put_line("Part B:");
    hashB.mainMem("Words200D16.txt", 128, 0.87, random, yours);
+   hashB.mainMem("Words200D16.txt", 128, 0.87, random, mine);
 --    
 --    put_line("Part C:");
 --    hashB.mainMem("Words200D16.txt", 128, 0.40, random, mine);
 --    hashB.mainMem("Words200D16.txt", 128, 0.87, random, mine);
 end test;
+
+hashTable

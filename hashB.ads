@@ -34,4 +34,6 @@ package hashB is
    procedure getTheor (input : hashIO.File_Type; myTable : hashTable; probeType : probe);
    function getKey (Item : hElement) return Integer;
    function myKey (Item : hElement; TS : Integer) return Integer;
+   procedure insertDirect (Item : hElement; file : hashIO.File_Type);
+   procedure myWrite (file : hashIO.File_Type; Item : hElement; location : hashIO.Count);
 end hashB;

@@ -134,7 +134,6 @@ package body hashB is
       null;
    end relFile;
 
------------------------------------------------------------------
    function getKey (Item : hElement) return Integer is
       temp : Unsigned_64;
    begin
@@ -164,5 +163,15 @@ package body hashB is
       --Write(file, myRecord, getKey(Item));
       null;
    end;
+   
+   procedure insertDirect (Item : hElement; file : hashIO.File_Type) is
+   begin
+      myWrite(file, Item, hashIO.Count(getKey(Item)));
+   end insertDirect;
+   
+   procedure myWrite (file : hashIO.File_Type; Item : hElement; location : hashIO.Count) is
+   begin
+      null;
+   end myWrite;
    
 end hashB;
