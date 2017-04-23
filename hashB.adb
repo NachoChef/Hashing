@@ -1,11 +1,17 @@
 with Ada.Direct_IO;
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 package body hashB is
 
+   procedure slingHash(inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash; loc : implementation) is
+   begin
+      null;
+   end slingHash;
+      
+
    procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash) is
       input : hashIO.File_Type;
-      output : Ada.Text_IO.File_Type;
       UB : Integer := Integer(Float'Floor(Float(size) * percentFull));     
    begin
       Open(input, in_file, inFile);
@@ -22,7 +28,7 @@ package body hashB is
                R : Integer := 1;
                div : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
             begin
-               Read(input, temp, int2Cnt(i));
+               Read(input, temp, hashIO.Count(i));
                hRec.Item := temp(1..16);
                if hashType = yours then
                   hRec.loc := getKey(hRec.Item);
@@ -56,7 +62,80 @@ package body hashB is
          getTheor(input, myTable, probeType); New_Line;
       end;
       Close(input);
-   end mainMem;
+   end mainMem;   
+   
+   procedure file (inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash) is
+      package outIO is new Direct_IO(outStr);
+      use outIO;
+      input : hashIO.File_Type;
+      storage : outIO.File_Type;
+      UB : Integer := Integer(Float'Floor(Float(size) * percentFull));
+   begin
+      Open(input, in_file, inFile);
+      declare
+         nullString : outStr := "                   0   0 ";
+      begin
+         Create(storage, inout_file, outFile);
+         for i in 1..size loop
+            outIO.Write(storage, nullString, outIO.Count(i));
+         end loop;
+         for i in 2..UB+1 loop
+            declare
+               hRec : hashRecord;
+               tOut : outStr;
+               temp : hRead;
+               offset : Integer := 0;
+               R : Integer := 1;
+               div : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
+            begin
+               Read(input, temp, hashIO.Count(i));
+               hRec.Item := temp(1..16);
+               if hashType = yours then
+                  hRec.loc := getKey(hRec.Item);
+               else
+                  hRec.loc := myKey(hRec.Item, size);
+               end if;
+               
+               loop
+                  outIO.Read(storage, tOut, outIO.Count(((hRec.loc + offset) mod size) + 1));
+                  hRec.probes := hRec.probes + 1;
+                  exit when tOut = nullString;
+                  if probeType = LINEAR then
+                     offset := offset + 1;
+                  else
+                     R := (R * 5) mod div;
+                     offset := offset + (R/4);
+                  end if;
+                  --fix
+                  outIO.Write(storage, tOut, outIO.Count(((hRec.loc + offset) mod size) + 1));
+               end loop;
+               
+               -- while myTable((hRec.loc + offset) mod size).Item /= nullRec.Item loop
+--                   if probeType = LINEAR then
+--                      offset := offset + 1;
+--                   else
+--                      R := (R * 5) mod div;
+--                      offset := offset + (R/4);
+--                   end if;
+--                   hRec.probes := hRec.probes + 1;
+--                end loop;
+--                myTable((hRec.loc + offset) mod size) := hRec;
+            end;
+         end loop; 
+         
+         for i in 0..size-1 loop
+            if myTable(i).Item /= nullRec.Item then
+               put(Integer'Image(i) & " is "); put(myTable(i).Item); put("Original location:" & Integer'Image(myTable(i).loc));put("     Probes:" & Integer'Image(myTable(i).probes)); New_Line;
+            else
+               put_line(Integer'Image(i) & " is NULL");
+            end if;
+         end loop; 
+         getAvg(input, myTable, 2, 31, probeType, hashType);
+         getAvg(input, myTable, UB-30, UB, probeType, hashType); 
+         getTheor(input, myTable, probeType); New_Line;
+      end;
+      Close(input);
+   end file;   
    
    procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; probeType : probe; hashType : hash) is
       min : Integer := myTable'Last+1;
@@ -126,13 +205,6 @@ package body hashB is
       put("Load level: "); fIO.put(Item => alpha * 100.0, Fore => 2, Aft => 2, Exp => 0);put("%"); New_Line;
       put("Expected average probes:"); fIO.put(Item => E, Fore => 2, Aft => 2, Exp => 0); New_Line;
    end getTheor;
-      
-   procedure relFile (inFile : String; outFile : String) is
-      input, output : Ada.Text_IO.File_Type;
-      hashTable : hashIO.File_Type;
-   begin
-      null;
-   end relFile;
 
    function getKey (Item : hElement) return Integer is
       temp : Unsigned_64;
@@ -155,23 +227,10 @@ package body hashB is
       return uns2Int(temp mod int2Uns(TS));  --extract first N bytes, where Log2N = TS
    end myKey;
    
-   procedure storeItem (Item : hElement; file : hashIO.File_Type) is
-      myRecord : hashRecord := (Item, getKey(Item), 1); --initialization
-      --temp : hashRecord;
+   procedure makeStr (rec : in hashRecord) return outStr is
+      ret : outStr;
    begin
-      --if Read(file, 
-      --Write(file, myRecord, getKey(Item));
-      null;
-   end;
-   
-   procedure insertDirect (Item : hElement; file : hashIO.File_Type) is
-   begin
-      myWrite(file, Item, hashIO.Count(getKey(Item)));
-   end insertDirect;
-   
-   procedure myWrite (file : hashIO.File_Type; Item : hElement; location : hashIO.Count) is
-   begin
-      null;
-   end myWrite;
+      outStr(1..16) := rec.Item;
+      
    
 end hashB;
