@@ -6,7 +6,11 @@ package body hashB is
 
    procedure slingHash(inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash; loc : implementation) is
    begin
-      null;
+      if loc = memory then
+         mainMem (inFile, size, percentFull, probeType, hashType);
+      else
+         file (inFile, outFile, size, percentFull, probeType, hashType);
+      end if;
    end slingHash;
       
 
@@ -227,10 +231,24 @@ package body hashB is
       return uns2Int(temp mod int2Uns(TS));  --extract first N bytes, where Log2N = TS
    end myKey;
    
-   procedure makeStr (rec : in hashRecord) return outStr is
-      ret : outStr;
+   --creates output string to write to file
+   procedure to_string (rec : in hashRecord) return outStr is
+      ret : outStr := "                         ";
+      s1 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.loc));
+      s2 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.probes));
    begin
       outStr(1..16) := rec.Item;
-      
+      outStr(18..(18+Length(s1)-1) := Integer'Image(rec.loc);
+      outStr(22..(18+Length(s2)-1) := Integer'Image(rec.probes);
+      return outStr;
+   end to_string;
    
+   procedure to_record (str : in outStr) return hashRecord is
+      ret : hashRecord;
+   begin
+      ret.Item := str(1..16);
+      ret.loc := Integer'Value(str(18..20));
+      ret.probes := Integer'Value(str(22..24));
+      return ret;
+   end to_record;
 end hashB;

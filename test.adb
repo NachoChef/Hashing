@@ -33,11 +33,7 @@ begin
 --    hashB.mainMem("Words200D16.txt", 128, 0.40, random, mine);
 --    hashB.mainMem("Words200D16.txt", 128, 0.87, random, mine);
 
-   testio.Open(output, testio.in_file, "test.txt");
-   testIO.Read(output, str, testio.Count(1));
-   put_line(str);
-   testIO.Read(output, str, testio.Count(1));
-   put_line(str);
+   put(Integer'Value("     9  "));
 
 end test;
 
