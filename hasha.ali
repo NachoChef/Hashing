@@ -1,0 +1,93 @@
+V "GNAT Lib v2016"
+A -mmacosx-version-min=10.12.5
+A -gnatc
+A -mtune=core2
+A -fPIC
+P NO ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_CONVERSION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U hasha%s		hasha.ads		5b63e4d5 EE NE OO PK
+W ada%s			ada.ads			ada.ali
+Z ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.float_io%s
+W ada.unchecked_conversion%s
+W direct_io%s
+Z interfaces%s		interfac.ads		interfac.ali
+Z interfaces.c_streams%s  i-cstrea.adb		i-cstrea.ali
+Z system%s		system.ads		system.ali
+Z system.direct_io%s	s-direio.adb		s-direio.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-direio.ads		20160516092928 5842da07 ada.direct_io%s
+D a-ioexce.ads		20160516092927 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20160516092929 119b8fb3 ada.streams%s
+D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
+D a-tiflio.ads		20160516092927 56fbda09 ada.text_io.float_io%s
+D a-unccon.ads		20160516092931 f9eb8f06 ada.unchecked_conversion%s
+D directio.ads		20160516092929 fc913ad7 direct_io%s
+D hasha.ads		20170425181651 6674a4d0 hasha%s
+D interfac.ads		20160516092928 5ab55268 interfaces%s
+D i-cstrea.ads		20160516092927 e53d8b8e interfaces.c_streams%s
+D system.ads		20160516092931 c3282aa7 system%s
+D s-crtl.ads		20160516092927 0ebbdb71 system.crtl%s
+D s-direio.ads		20160516092927 7c86ede3 system.direct_io%s
+D s-ficobl.ads		20160516092933 078245e4 system.file_control_block%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-wchcon.ads		20160516092931 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 9|1r6 1r23 2r17 25r26 26r28
+X 2 a-direio.ads
+53P9*File_Type<14|81P9> 9|28r36[15] 28r67[17] 29r38[15] 29r69[17]
+X 5 a-textio.ads
+49K13*Text_IO 471e16 9|1w10 1r27
+X 6 a-tiflio.ads
+46k21*Float_IO 89e25 9|19r23
+X 7 a-unccon.ads
+20v14*Unchecked_Conversion 9|2w21 25r30 26r32
+X 8 directio.ads
+24k17*Direct_IO 9|2w6 15r26 17r29
+X 9 hasha.ads
+4K9*hashA 30l5 30e10
+5A12*hashElement{string}<integer> 9r14 15r36 25r51 26r53
+6R9*hashRecord 7r26 8c9 13e14 17r39
+7P9*hashPt(6R9) 12r14
+9a7*Item{5A12}
+10i7*loc{integer}
+11i7*probes{integer}
+12p7*next{7P9}
+15K12*hashIO[2|43] 16r8 28r29 29r31
+17K12*storageIO[2|43] 18r8 28r57 29r59
+19K12*fIO[6|46] 20r8
+22E9*hash 22e30 27r105 28r123
+22n18*mine{22E9}
+22n24*yours{22E9}
+24M9*Unsigned_64 25r64 26r66
+25V13*e2Uns[7|20]{24M9}
+26V13*uns2Int[7|20]{24M9}
+27U14*slingHash 27>24 27>40 27>57 27>73 27>94
+27a24 input{string}
+27a40 output{string}
+27i57 size{integer}
+27f73 percentFull{float}
+27e94 hashType{22E9}
+28U14*getAvg 28>21 28>47 28>78 28>95 28>112
+28p21 input{2|53P9[15]}
+28p47 storage{2|53P9[17]}
+28i78 lower{integer}
+28i95 upper{integer}
+28e112 hashType{22E9}
+29U14*getTheor 29>23 29>49
+29p23 input{2|53P9[15]}
+29p49 storage{2|53P9[17]}
+X 14 s-direio.ads
+81P9*File_Type(53R9)
+

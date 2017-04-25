@@ -13,6 +13,7 @@ procedure test is
    nullString : outStr := "                   0   0 ";
    rec : hashB.hashRecord := ("1234567890123456", 112, 10);
    s1 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.probes));
+   
 begin
 --     put_line("Part A:");
 --     hashB.mainMem("Words200D16.txt", 128, 0.40, linear, yours);
@@ -38,9 +39,22 @@ begin
       put_line(nullString);
    end loop;
 
-   put(to_string(rec));New_Line;
-   rec := to_record("hash567890123456  10   2 ");
-   put(rec.Item); put(rec.loc); put(rec.probes);
-
+   declare
+      type rec is record
+         item : String(1..4);
+         loc : integer;
+      end record;
+      package testIO is new Direct_IO(rec);
+      f1 : testIO.File_Type;
+      testrec : rec := ("1234", 3);
+      inrec : rec;
+   begin
+      testIO.Create(f1, testIO.inout_file, "f1");
+      testIO.Reset(f1);
+      testIO.Write(f1, testrec, 1);
+      testIO.Read(f1, inrec, 1);
+      put(inrec.loc);
+   
+   end;
 end test;
 

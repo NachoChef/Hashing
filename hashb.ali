@@ -8,7 +8,6 @@ RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
 RV NO_IO
 RV NO_IMPLICIT_CONDITIONALS
-RV NO_LONG_LONG_INTEGERS
 RV NO_NESTED_FINALIZATION
 RV NO_SECONDARY_STACK
 RV NO_STANDARD_STORAGE_POOLS
@@ -73,58 +72,58 @@ Z system.file_io%s	s-fileio.adb		s-fileio.ali
 Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
 
 D ada.ads		20160516092928 3ffc8e18 ada%s
-D a-charac.ads		20160516092930 2d3ec45b ada.characters%s
+D a-charac.ads		20160516092931 2d3ec45b ada.characters%s
 D a-chlat1.ads		20160516092930 66457d31 ada.characters.latin_1%s
 D a-direio.ads		20160516092928 5842da07 ada.direct_io%s
-D a-direio.adb		20160516092926 ddb08ceb ada.direct_io%b
+D a-direio.adb		20160516092927 ddb08ceb ada.direct_io%b
 D a-except.ads		20160516092928 291912d5 ada.exceptions%s
-D a-finali.ads		20160516092930 bf4f806b ada.finalization%s
-D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
+D a-finali.ads		20160516092931 bf4f806b ada.finalization%s
+D a-ioexce.ads		20160516092927 e4a01f64 ada.io_exceptions%s
 D a-numeri.ads		20160516092928 bb51c45a ada.numerics%s
 D a-nuelfu.ads		20160516092928 03e83d1c ada.numerics.elementary_functions%s
-D a-ngelfu.ads		20160516092930 b8fdcb46 ada.numerics.generic_elementary_functions%s
-D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-ngelfu.ads		20160516092931 b8fdcb46 ada.numerics.generic_elementary_functions%s
+D a-stream.ads		20160516092929 119b8fb3 ada.streams%s
 D a-string.ads		20160516092930 90ac6797 ada.strings%s
 D a-strmap.ads		20160516092930 e8bb714a ada.strings.maps%s
 D a-strunb.ads		20160516092928 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
-D a-tiflau.ads		20160516092928 c0393f21 ada.text_io.float_aux%s
-D a-tiflio.ads		20160516092926 56fbda09 ada.text_io.float_io%s
-D a-tiflio.adb		20160516092928 fd9b1cfc ada.text_io.float_io%b
-D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
-D directio.ads		20160516092928 fc913ad7 direct_io%s
-D hashb.ads		20170425031036 0629d97a hashb%s
-D hashb.adb		20170425033738 8a6ce075 hashb%b
+D a-tiflau.ads		20160516092929 c0393f21 ada.text_io.float_aux%s
+D a-tiflio.ads		20160516092927 56fbda09 ada.text_io.float_io%s
+D a-tiflio.adb		20160516092929 fd9b1cfc ada.text_io.float_io%b
+D a-unccon.ads		20160516092931 f9eb8f06 ada.unchecked_conversion%s
+D directio.ads		20160516092929 fc913ad7 direct_io%s
+D hashb.ads		20170425174244 0629d97a hashb%s
+D hashb.adb		20170425174244 8a6ce075 hashb%b
 D interfac.ads		20160516092928 5ab55268 interfaces%s
-D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
-D system.ads		20160516092930 2da59038 system%s
+D i-cstrea.ads		20160516092927 e53d8b8e interfaces.c_streams%s
+D system.ads		20160516092931 c3282aa7 system%s
 D s-atocou.ads		20160516092932 b45c2d8d system.atomic_counters%s
 D s-conca2.ads		20160516092930 02a0d7d0 system.concat_2%s
-D s-conca4.ads		20160516092930 7e642b20 system.concat_4%s
-D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
-D s-direio.ads		20160516092926 7c86ede3 system.direct_io%s
-D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-conca4.ads		20160516092931 7e642b20 system.concat_4%s
+D s-crtl.ads		20160516092927 0ebbdb71 system.crtl%s
+D s-direio.ads		20160516092927 7c86ede3 system.direct_io%s
+D s-exctab.ads		20160516092931 54135002 system.exception_table%s
 D s-fatflt.ads		20160516092930 11beb392 system.fat_flt%s
-D s-fatgen.ads		20160516092932 49cbaf86 system.fat_gen%s
-D s-ficobl.ads		20160516092932 078245e4 system.file_control_block%s
+D s-fatgen.ads		20160516092933 49cbaf86 system.fat_gen%s
+D s-ficobl.ads		20160516092933 078245e4 system.file_control_block%s
 D s-fileio.ads		20160516092928 45ce2f0f system.file_io%s
-D s-finmas.ads		20160516092930 7811a767 system.finalization_masters%s
-D s-finroo.ads		20160516092930 4ff27390 system.finalization_root%s
+D s-finmas.ads		20160516092931 7811a767 system.finalization_masters%s
+D s-finroo.ads		20160516092931 4ff27390 system.finalization_root%s
 D s-imgint.ads		20160516092928 02dbe0c2 system.img_int%s
 D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
-D s-secsta.ads		20160516092930 86a2856d system.secondary_stack%s
-D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-secsta.ads		20160516092931 86a2856d system.secondary_stack%s
+D s-soflin.ads		20160516092929 14e1eb6c system.soft_links%s
 D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
-D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stalib.ads		20160516092931 09bd3940 system.standard_library%s
 D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
 D s-stopoo.ads		20160516092928 b16154c2 system.storage_pools%s
-D s-stposu.ads		20160516092926 97a6219c system.storage_pools.subpools%s
-D s-stratt.ads		20160516092926 aedef97e system.stream_attributes%s
+D s-stposu.ads		20160516092927 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20160516092927 aedef97e system.stream_attributes%s
 D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 D s-valint.ads		20160516092930 48a52a3f system.val_int%s
-D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
+D s-wchcon.ads		20160516092931 1b7d22d2 system.wch_con%s
 X 1 ada.ads
 16K9*Ada 19e8 23|1r6 1r23 3r6 4r6 4r33 9r24 27r28 28r30 29r29 30r28 31r28
 . 24|1r6 2r6 2r45 3r6 3r33
@@ -135,7 +134,7 @@ X 4 a-direio.ads
 55E9 File_Mode
 55n23*In_File{55E9[23|21]} 24|21r19[23|21] 79r19[23|21]
 55n32 Inout_File{55E9[24|72]} 24|83r26[72]
-66I9*Count<long_long_integer> 24|35r41[23|21] 85r52[72] 97r41[23|21] 106r51[72]
+66I9*Count<long_integer> 24|35r41[23|21] 85r52[72] 97r41[23|21] 106r51[72]
 . 116r63[72] 133r45[72] 163r38[23|21]
 74U14 Create 24|83s10[72]
 80U14*Open 24|21s7[23|21] 79s7[23|21]
