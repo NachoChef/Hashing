@@ -1,26 +1,18 @@
---with hashB; 
+
 with Ada.Text_IO, direct_io; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 with Ada.Unchecked_Conversion;
--- with hashB; use hashB;
+with hashB; use hashB;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 procedure test is
-   package ASU renames Ada.Strings.Unbounded;
-   type growthSpace is array(Integer range <>) of Integer;
-   subtype slice is String(1..2);
-   type Unsigned_64 is mod 2**64;
-   function str2Long is new Ada.Unchecked_Conversion(slice, Long_integer);
-   function str2Uns is new Ada.Unchecked_Conversion(slice, Unsigned_64);
-   function long2Int is new Ada.Unchecked_Conversion(Long_integer, Integer);
-   function uns2Int is new Ada.Unchecked_Conversion(Unsigned_64, Integer);
-   subtype hElement is String(1..16);
-   subtype myStr is String(1..4);
-   package testIO is new Direct_IO(mystr);
-   output : testio.File_Type;
-   init : String(1..25) := "                         ";
-   str : myStr;
-   
+   subtype outStr is String(1..25);
+   package outIO is new Direct_IO(outStr);
+   use outIO;
+   storage : outIO.File_Type;
+   nullString : outStr := "                   0   0 ";
+   rec : hashB.hashRecord := ("1234567890123456", 112, 10);
+   s1 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.probes));
 begin
 --     put_line("Part A:");
 --     hashB.mainMem("Words200D16.txt", 128, 0.40, linear, yours);
@@ -33,7 +25,22 @@ begin
 --    hashB.mainMem("Words200D16.txt", 128, 0.40, random, mine);
 --    hashB.mainMem("Words200D16.txt", 128, 0.87, random, mine);
 
-   put(Integer'Value("     9  "));
+   -- hashB.file ("Words200D16.txt", "test.txt", 128, 0.40, linear, yours);
+   Create(storage, inout_file, "test.txt");
+   Reset(storage);
+   for i in 10..15 loop
+      nullstring(1..3) := Integer'Image(i);
+      outIO.Write(storage, nullString, outIO.Count(i));
+         end loop;
+         
+   for i in outIO.positive_count range 10..15 loop
+      outIO.Read(storage, nullString, i);
+      put_line(nullString);
+   end loop;
+
+   put(to_string(rec));New_Line;
+   rec := to_record("hash567890123456  10   2 ");
+   put(rec.Item); put(rec.loc); put(rec.probes);
 
 end test;
 

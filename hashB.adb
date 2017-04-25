@@ -74,6 +74,7 @@ package body hashB is
       input : hashIO.File_Type;
       storage : outIO.File_Type;
       UB : Integer := Integer(Float'Floor(Float(size) * percentFull));
+      tOut : outStr;    -- temp out
    begin
       Open(input, in_file, inFile);
       declare
@@ -83,10 +84,11 @@ package body hashB is
          for i in 1..size loop
             outIO.Write(storage, nullString, outIO.Count(i));
          end loop;
+         
          for i in 2..UB+1 loop
             declare
                hRec : hashRecord;
-               tOut : outStr;
+               
                temp : hRead;
                offset : Integer := 0;
                R : Integer := 1;
@@ -99,9 +101,9 @@ package body hashB is
                else
                   hRec.loc := myKey(hRec.Item, size);
                end if;
-               
+               -------------------------
                loop
-                  outIO.Read(storage, tOut, outIO.Count(((hRec.loc + offset) mod size) + 1));
+                  outIO.Read(storage, tOut, outIO.Count(hRec.loc));
                   hRec.probes := hRec.probes + 1;
                   exit when tOut = nullString;
                   if probeType = LINEAR then
@@ -111,7 +113,7 @@ package body hashB is
                      offset := offset + (R/4);
                   end if;
                   --fix
-                  outIO.Write(storage, tOut, outIO.Count(((hRec.loc + offset) mod size) + 1));
+                  outIO.Write(storage, to_string(hRec), outIO.Count(((hRec.loc + offset) mod size) + 1));
                end loop;
                
                -- while myTable((hRec.loc + offset) mod size).Item /= nullRec.Item loop
@@ -127,16 +129,17 @@ package body hashB is
             end;
          end loop; 
          
-         for i in 0..size-1 loop
-            if myTable(i).Item /= nullRec.Item then
-               put(Integer'Image(i) & " is "); put(myTable(i).Item); put("Original location:" & Integer'Image(myTable(i).loc));put("     Probes:" & Integer'Image(myTable(i).probes)); New_Line;
+         for i in 1..size loop
+            outIO.Read(storage, tOut, outIO.Count(i));
+            if tOut /= nullString then
+               put(Integer'Image(i) & " is "); put(tOut(1..16)); put("Original location:" & tOut(18..20));put("     Probes:" & tOut(22..24)); New_Line;
             else
                put_line(Integer'Image(i) & " is NULL");
             end if;
          end loop; 
-         getAvg(input, myTable, 2, 31, probeType, hashType);
-         getAvg(input, myTable, UB-30, UB, probeType, hashType); 
-         getTheor(input, myTable, probeType); New_Line;
+         -- getAvg(input, myTable, 2, 31, probeType, hashType);
+--          getAvg(input, myTable, UB-30, UB, probeType, hashType); 
+--          getTheor(input, myTable, probeType); New_Line;
       end;
       Close(input);
    end file;   
@@ -157,7 +160,7 @@ package body hashB is
             divisor : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
 
          begin
-            Read(input, temp, int2Cnt(i));
+            Read(input, temp, hashIO.Count(i));
             hRec.Item := temp(1..16);
             if hashType = yours then
                hRec.loc := getKey(hRec.Item);
@@ -232,18 +235,18 @@ package body hashB is
    end myKey;
    
    --creates output string to write to file
-   procedure to_string (rec : in hashRecord) return outStr is
+   function to_string (rec : in hashRecord) return outStr is
       ret : outStr := "                         ";
       s1 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.loc));
       s2 : Unbounded_String := To_Unbounded_String(Integer'Image(rec.probes));
    begin
-      outStr(1..16) := rec.Item;
-      outStr(18..(18+Length(s1)-1) := Integer'Image(rec.loc);
-      outStr(22..(18+Length(s2)-1) := Integer'Image(rec.probes);
-      return outStr;
+      ret(1..16) := rec.Item;
+      ret(18..(18+Length(s1))-1) := Integer'Image(rec.loc);
+      ret(22..(22+Length(s2))-1) := Integer'Image(rec.probes);
+      return ret;
    end to_string;
    
-   procedure to_record (str : in outStr) return hashRecord is
+   function to_record (str : in outStr) return hashRecord is
       ret : hashRecord;
    begin
       ret.Item := str(1..16);
