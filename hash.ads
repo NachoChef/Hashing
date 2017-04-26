@@ -1,12 +1,10 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with direct_io;
 with Ada.Unchecked_Conversion;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 package hash is
    package fIO is new Float_IO(Float);
    use fIO;
-   package ASU renames Ada.Strings.Unbounded;
    subtype hRead is String(1..18);--handles line return
    subtype hElement is String(1..16); 
    subtype slice is String(1..2);
@@ -20,6 +18,8 @@ package hash is
    end record;
    package hashIO is new Direct_IO(hRead);
    use hashIO;
+   package outIO is new Direct_IO(hashRecord);
+   use outIO;
    type hashTable is array(Integer range <>) of hashRecord;
    type probe is (linear, random);
    type hash is (mine, yours);
@@ -33,7 +33,8 @@ package hash is
    procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash);
    procedure file (inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash);
    procedure getAvg(input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash);
-   procedure getTheor (input : hashIO.File_Type; myTable : hashTable; probeType : probe);
+   procedure getAvg(input : hashIO.File_Type; storage : outIO.File_Type; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash);
+   procedure getTheor (size : Integer; keys : Integer; probeType : probe);
    function getKey (Item : hElement) return Integer;
    function myKey (Item : hElement; TS : Integer) return Integer;
 end hash;

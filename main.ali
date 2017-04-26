@@ -1,0 +1,59 @@
+V "GNAT Lib v2016"
+M P W=b
+A -g
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IO
+RV SPARK_05
+
+U main%b		main.adb		c62213d2 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W direct_io%s
+W hash%s		hash.adb		hash.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-direio.ads		20160516092928 5842da07 ada.direct_io%s
+D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
+D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
+D a-tiflio.ads		20160516092926 56fbda09 ada.text_io.float_io%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D directio.ads		20160516092928 fc913ad7 direct_io%s
+D hash.ads		20170426054208 a2459e50 hash%s
+D interfac.ads		20160516092928 5ab55268 interfaces%s
+D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
+D main.adb		20170426053646 a09b4281 main%b
+D system.ads		20160516092930 2da59038 system%s
+D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
+D s-direio.ads		20160516092926 7c86ede3 system.direct_io%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-ficobl.ads		20160516092932 078245e4 system.file_control_block%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 19e8 14|1r6 1r34
+X 7 a-textio.ads
+49K13*Text_IO 471e16 14|1w10 1r38
+263U14*Put_Line 14|7s4
+X 10 directio.ads
+24k17*Direct_IO 14|1w19
+X 11 hash.ads
+5K9*hash 40e9 14|2w6 2r16 9r4
+24n19*linear{24E9} 14|9r56
+25n24*yours{25E9} 14|9r64
+26n36*file{26E9} 14|9r71
+32U14*slingHash 14|9s9
+X 14 main.adb
+4U11*main 4b11 30l5 30t9
+

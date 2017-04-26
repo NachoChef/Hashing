@@ -64,14 +64,12 @@ package body hash is
          end loop; 
          getAvg(input, myTable, 2, 31, size, probeType, hashType);
          getAvg(input, myTable, UB-30, UB, size, probeType, hashType); 
-         getTheor(input, myTable, probeType); New_Line;
+         getTheor (size, UB, probeType); New_Line;
       end;
       Close(input);
    end mainMem;   
    
    procedure file (inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash) is
-      package outIO is new Direct_IO(hashRecord);   --instantiated here, only needed in this proc
-      use outIO;
       input : hashIO.File_Type;
       storage : outIO.File_Type;
       UB : Integer := Integer(Float'Floor(Float(size) * percentFull));
@@ -132,15 +130,67 @@ package body hash is
                put_line(Integer'Image(i) & " is NULL");
             end if;
          end loop; 
-         --getAvg(input, myTable, 2, 31, size, probeType, hashType);
---          getAvg(input, myTable, UB-30, UB, probeType, hashType); 
---          getTheor(input, myTable, probeType); New_Line;
+         getAvg(input, storage, 2, 31, size, probeType, hashType);
+         getAvg(input, storage, UB-30, UB, size, probeType, hashType); 
+         getTheor (size, UB, probeType); New_Line;
          Close(storage);
       end;
       Close(input);
    end file;   
    
-   procedure getAvg (input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash) is
+   procedure getAvg (input : hashIO.File_Type; storage : outIO.File_Type; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash) is
+      min : Integer := 1000;
+      max : Integer := 1;
+      avg : Float := 0.0;
+      div : Float := Float(upper-lower+1);
+   begin
+      for i in lower..upper loop
+         declare
+            hRec, T : hashRecord;
+            temp : hRead;
+            offset, loc : Integer := 0;
+            R : Integer := 1;
+            divisor : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
+            nullRec : hashRecord := (Item => "                ",  loc => 0, probes => 0);
+         begin
+            Read(input, temp, hashIO.Count(i));
+            hRec.Item := temp(1..16);
+            if hashType = yours then
+               hRec.loc := getKey(hRec.Item);
+            else
+               hRec.loc := myKey(hRec.Item, size);
+            end if;
+            loop
+               loc := (hRec.loc + offset) mod size;
+               if loc = 0 then   --fix wrap around, 1 based
+                  loc := 128;
+               end if;
+               outIO.Read(storage, T, outIO.Count(loc));
+               exit when T.Item = nullRec.Item;
+               hRec.probes := hRec.probes + 1;
+               if probeType = LINEAR then
+                  offset := offset + 1;
+               else
+                  R := (R * 5) mod divisor;
+                  offset := offset + (R/4);
+               end if;
+            end loop;
+            if hRec.probes < min then
+               min := hRec.probes;
+            elsif hRec.probes > max then
+               max := hRec.probes;
+            end if;
+            avg := avg + (Float(hRec.probes)/div);
+         end;
+      end loop;
+      put_line("----------------");
+      put_line("Stats for" & Integer'Image(lower) & " to" & Integer'Image(upper));
+      put_line("Min:" & Integer'Image(min));
+      put_line("Max:" & Integer'Image(max));
+      put_line("Avg:" & Integer'Image(Integer(Float'Unbiased_Rounding(avg))));
+   end getAvg;
+   
+   procedure getAvg(input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash) is
       min : Integer := 1000;
       max : Integer := 1;
       avg : Float := 0.0;
@@ -186,17 +236,10 @@ package body hash is
       put_line("Avg:" & Integer'Image(Integer(Float'Unbiased_Rounding(avg))));
    end getAvg;
    
-   procedure getTheor (input : hashIO.File_Type; myTable : hashTable; probeType : probe) is
-      keys : integer := 0;
-      TS : integer := myTable'Last - myTable'First + 1;
+   procedure getTheor (size : Integer; keys : Integer; probeType : probe) is
       alpha, E : Float;
    begin
-      for i in myTable'Range loop
-         if myTable(i).Item /= "                " then
-            keys := keys + 1;                  
-         end if;
-      end loop;
-      alpha := (Float(keys) / Float(TS));
+      alpha := (Float(keys) / Float(size));
       if probeType = LINEAR then
          E := (1.0 - alpha / 2.0) / (1.0 - alpha);
       else
