@@ -8,7 +8,7 @@ RV NO_FLOATING_POINT
 RV NO_IO
 RV SPARK_05
 
-U main%b		main.adb		c62213d2 NE OO SU IL
+U main%b		main.adb		b13437c1 NE OO SU IL
 W ada%s			ada.ads			ada.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W direct_io%s
@@ -27,7 +27,7 @@ D directio.ads		20160516092928 fc913ad7 direct_io%s
 D hash.ads		20170426054208 a2459e50 hash%s
 D interfac.ads		20160516092928 5ab55268 interfaces%s
 D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
-D main.adb		20170426053646 a09b4281 main%b
+D main.adb		20170426161144 d78d6692 main%b
 D system.ads		20160516092930 2da59038 system%s
 D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
 D s-direio.ads		20160516092926 7c86ede3 system.direct_io%s
@@ -45,15 +45,20 @@ X 1 ada.ads
 16K9*Ada 19e8 14|1r6 1r34
 X 7 a-textio.ads
 49K13*Text_IO 471e16 14|1w10 1r38
-263U14*Put_Line 14|7s4
+263U14*Put_Line 14|7s4 11s4 15s4 21s4
 X 10 directio.ads
 24k17*Direct_IO 14|1w19
 X 11 hash.ads
-5K9*hash 40e9 14|2w6 2r16 9r4
-24n19*linear{24E9} 14|9r56
-25n24*yours{25E9} 14|9r64
-26n36*file{26E9} 14|9r71
-32U14*slingHash 14|9s9
+5K9*hash 40e9 14|2w6 2r16 8r4 9r4 12r4 13r4 16r4 17r4 18r4 19r4 22r4 23r4
+. 24r4 25r4 26r4 27r4 28r4 29r4
+24n19*linear{24E9} 14|8r58 9r56 12r58 13r56 22r58 23r58 26r58 27r58
+24n27*random{24E9} 14|16r58 17r58 18r58 19r58 24r58 25r58 28r58 29r58
+25n18*mine{25E9} 14|22r66 23r66 24r66 25r66 26r66 27r66 28r66 29r66
+25n24*yours{25E9} 14|8r66 9r64 12r66 13r64 16r66 17r66 18r66 19r66
+26n28*memory{26E9} 14|8r73 12r73 16r73 17r73 22r72 23r72 24r72 25r72
+26n36*file{26E9} 14|9r71 13r71 18r73 19r73 26r72 27r72 28r72 29r72
+32U14*slingHash 14|8s9 9s9 12s9 13s9 16s9 17s9 18s9 19s9 22s9 23s9 24s9 25s9
+. 26s9 27s9 28s9 29s9
 X 14 main.adb
 4U11*main 4b11 30l5 30t9
 

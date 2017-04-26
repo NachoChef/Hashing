@@ -8,8 +8,10 @@ package body hash is
    procedure slingHash(inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash; loc : implementation) is
    begin
       if loc = memory then
+         put_line("Location: main memory");
          mainMem (inFile, size, percentFull, probeType, hashType);
       else
+         put_line("Location: " & outFile);
          file (inFile, outFile, size, percentFull, probeType, hashType);
       end if;
    end slingHash;
@@ -100,7 +102,7 @@ package body hash is
                else
                   hRec.loc := myKey(hRec.Item, size);
                end if;
-               --reading to T to compare for collisions
+               --searching for unused space
                loop
                   loc := (hRec.loc + offset) mod size;
                   if loc = 0 then   --fix wrap around, 1 based
@@ -146,28 +148,27 @@ package body hash is
    begin
       for i in lower..upper loop
          declare
-            hRec, T : hashRecord;
+            T, T2: hashRecord;
             temp : hRead;
             offset, loc : Integer := 0;
             R : Integer := 1;
             divisor : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
-            nullRec : hashRecord := (Item => "                ",  loc => 0, probes => 0);
          begin
             Read(input, temp, hashIO.Count(i));
-            hRec.Item := temp(1..16);
+            T.Item := temp(1..16);
             if hashType = yours then
-               hRec.loc := getKey(hRec.Item);
+               T.loc := getKey(T.Item);
             else
-               hRec.loc := myKey(hRec.Item, size);
+               T.loc := myKey(T.Item, size);
             end if;
             loop
-               loc := (hRec.loc + offset) mod size;
+               loc := (T.loc + offset) mod size;
                if loc = 0 then   --fix wrap around, 1 based
                   loc := 128;
                end if;
-               outIO.Read(storage, T, outIO.Count(loc));
-               exit when T.Item = nullRec.Item;
-               hRec.probes := hRec.probes + 1;
+               outIO.Read(storage, T2, outIO.Count(loc));
+               exit when T2.Item = T.Item;
+               T.probes := T.probes + 1;
                if probeType = LINEAR then
                   offset := offset + 1;
                else
@@ -175,19 +176,19 @@ package body hash is
                   offset := offset + (R/4);
                end if;
             end loop;
-            if hRec.probes < min then
-               min := hRec.probes;
-            elsif hRec.probes > max then
-               max := hRec.probes;
+            if T.probes < min then
+               min := T.probes;
+            elsif T.probes > max then
+               max := T.probes;
             end if;
-            avg := avg + (Float(hRec.probes)/div);
+            avg := avg + (Float(T.probes)/div);
          end;
       end loop;
       put_line("----------------");
       put_line("Stats for" & Integer'Image(lower) & " to" & Integer'Image(upper));
       put_line("Min:" & Integer'Image(min));
       put_line("Max:" & Integer'Image(max));
-      put_line("Avg:" & Integer'Image(Integer(Float'Unbiased_Rounding(avg))));
+      put("Avg:"); fIO.put(Item => avg, Fore => 2, Aft => 2, Exp => 0); New_Line;
    end getAvg;
    
    procedure getAvg(input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash) is
@@ -203,7 +204,6 @@ package body hash is
             offset : Integer := 0;
             R : Integer := 1;
             divisor : Integer := 2 ** (Integer(Log(Base => 2.0, X => Float(size))) + 2);
-
          begin
             Read(input, temp, hashIO.Count(i));
             hRec.Item := temp(1..16);
