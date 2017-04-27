@@ -35,7 +35,7 @@ package ada_main is
    pragma Export (C, main, "main");
 
    type Version_32 is mod 2 ** 32;
-   u00001 : constant Version_32 := 16#b13437c1#;
+   u00001 : constant Version_32 := 16#7da23710#;
    pragma Export (C, u00001, "mainB");
    u00002 : constant Version_32 := 16#b6df930e#;
    pragma Export (C, u00002, "system__standard_libraryB");
@@ -43,10 +43,10 @@ package ada_main is
    pragma Export (C, u00003, "system__standard_libraryS");
    u00004 : constant Version_32 := 16#3ffc8e18#;
    pragma Export (C, u00004, "adaS");
-   u00005 : constant Version_32 := 16#d5bfa9f3#;
-   pragma Export (C, u00005, "ada__text_ioB");
-   u00006 : constant Version_32 := 16#c3f01c15#;
-   pragma Export (C, u00006, "ada__text_ioS");
+   u00005 : constant Version_32 := 16#f64b89a4#;
+   pragma Export (C, u00005, "ada__integer_text_ioB");
+   u00006 : constant Version_32 := 16#f1daf268#;
+   pragma Export (C, u00006, "ada__integer_text_ioS");
    u00007 : constant Version_32 := 16#da4d2671#;
    pragma Export (C, u00007, "ada__exceptionsB");
    u00008 : constant Version_32 := 16#4c8cceba#;
@@ -203,88 +203,88 @@ package ada_main is
    pragma Export (C, u00083, "system__wch_jisB");
    u00084 : constant Version_32 := 16#b91f1138#;
    pragma Export (C, u00084, "system__wch_jisS");
-   u00085 : constant Version_32 := 16#10558b11#;
-   pragma Export (C, u00085, "ada__streamsB");
-   u00086 : constant Version_32 := 16#2e6701ab#;
-   pragma Export (C, u00086, "ada__streamsS");
-   u00087 : constant Version_32 := 16#db5c917c#;
-   pragma Export (C, u00087, "ada__io_exceptionsS");
-   u00088 : constant Version_32 := 16#920eada5#;
-   pragma Export (C, u00088, "ada__tagsB");
-   u00089 : constant Version_32 := 16#13ca27f3#;
-   pragma Export (C, u00089, "ada__tagsS");
-   u00090 : constant Version_32 := 16#c3335bfd#;
-   pragma Export (C, u00090, "system__htableB");
-   u00091 : constant Version_32 := 16#a96723d2#;
-   pragma Export (C, u00091, "system__htableS");
-   u00092 : constant Version_32 := 16#089f5cd0#;
-   pragma Export (C, u00092, "system__string_hashB");
-   u00093 : constant Version_32 := 16#0b3948ac#;
-   pragma Export (C, u00093, "system__string_hashS");
-   u00094 : constant Version_32 := 16#1d9142a4#;
-   pragma Export (C, u00094, "system__val_unsB");
-   u00095 : constant Version_32 := 16#098b0180#;
-   pragma Export (C, u00095, "system__val_unsS");
-   u00096 : constant Version_32 := 16#b29d05bd#;
-   pragma Export (C, u00096, "system__file_ioB");
-   u00097 : constant Version_32 := 16#8ad4715d#;
-   pragma Export (C, u00097, "system__file_ioS");
-   u00098 : constant Version_32 := 16#cf417de3#;
-   pragma Export (C, u00098, "ada__finalizationS");
-   u00099 : constant Version_32 := 16#95817ed8#;
-   pragma Export (C, u00099, "system__finalization_rootB");
-   u00100 : constant Version_32 := 16#6257e3a8#;
-   pragma Export (C, u00100, "system__finalization_rootS");
-   u00101 : constant Version_32 := 16#9dd55695#;
-   pragma Export (C, u00101, "system__os_libB");
-   u00102 : constant Version_32 := 16#bf5ce13f#;
-   pragma Export (C, u00102, "system__os_libS");
-   u00103 : constant Version_32 := 16#1a817b8e#;
-   pragma Export (C, u00103, "system__stringsB");
-   u00104 : constant Version_32 := 16#531a815e#;
-   pragma Export (C, u00104, "system__stringsS");
-   u00105 : constant Version_32 := 16#d03a0a90#;
-   pragma Export (C, u00105, "system__file_control_blockS");
-   u00106 : constant Version_32 := 16#e9868f09#;
-   pragma Export (C, u00106, "hashB");
-   u00107 : constant Version_32 := 16#9f52de55#;
-   pragma Export (C, u00107, "hashS");
-   u00108 : constant Version_32 := 16#f64b89a4#;
-   pragma Export (C, u00108, "ada__integer_text_ioB");
-   u00109 : constant Version_32 := 16#f1daf268#;
-   pragma Export (C, u00109, "ada__integer_text_ioS");
-   u00110 : constant Version_32 := 16#f6fdca1c#;
-   pragma Export (C, u00110, "ada__text_io__integer_auxB");
-   u00111 : constant Version_32 := 16#b9793d30#;
-   pragma Export (C, u00111, "ada__text_io__integer_auxS");
-   u00112 : constant Version_32 := 16#181dc502#;
-   pragma Export (C, u00112, "ada__text_io__generic_auxB");
-   u00113 : constant Version_32 := 16#a6c327d3#;
-   pragma Export (C, u00113, "ada__text_io__generic_auxS");
-   u00114 : constant Version_32 := 16#b10ba0c7#;
-   pragma Export (C, u00114, "system__img_biuB");
-   u00115 : constant Version_32 := 16#df0164f6#;
-   pragma Export (C, u00115, "system__img_biuS");
-   u00116 : constant Version_32 := 16#4e06ab0c#;
-   pragma Export (C, u00116, "system__img_llbB");
-   u00117 : constant Version_32 := 16#9ec67408#;
-   pragma Export (C, u00117, "system__img_llbS");
-   u00118 : constant Version_32 := 16#9dca6636#;
-   pragma Export (C, u00118, "system__img_lliB");
-   u00119 : constant Version_32 := 16#3ceac5e9#;
-   pragma Export (C, u00119, "system__img_lliS");
-   u00120 : constant Version_32 := 16#a756d097#;
-   pragma Export (C, u00120, "system__img_llwB");
-   u00121 : constant Version_32 := 16#37aa579e#;
-   pragma Export (C, u00121, "system__img_llwS");
-   u00122 : constant Version_32 := 16#eb55dfbb#;
-   pragma Export (C, u00122, "system__img_wiuB");
-   u00123 : constant Version_32 := 16#b140e364#;
-   pragma Export (C, u00123, "system__img_wiuS");
-   u00124 : constant Version_32 := 16#d763507a#;
-   pragma Export (C, u00124, "system__val_intB");
-   u00125 : constant Version_32 := 16#6500ba07#;
-   pragma Export (C, u00125, "system__val_intS");
+   u00085 : constant Version_32 := 16#d5bfa9f3#;
+   pragma Export (C, u00085, "ada__text_ioB");
+   u00086 : constant Version_32 := 16#c3f01c15#;
+   pragma Export (C, u00086, "ada__text_ioS");
+   u00087 : constant Version_32 := 16#10558b11#;
+   pragma Export (C, u00087, "ada__streamsB");
+   u00088 : constant Version_32 := 16#2e6701ab#;
+   pragma Export (C, u00088, "ada__streamsS");
+   u00089 : constant Version_32 := 16#db5c917c#;
+   pragma Export (C, u00089, "ada__io_exceptionsS");
+   u00090 : constant Version_32 := 16#920eada5#;
+   pragma Export (C, u00090, "ada__tagsB");
+   u00091 : constant Version_32 := 16#13ca27f3#;
+   pragma Export (C, u00091, "ada__tagsS");
+   u00092 : constant Version_32 := 16#c3335bfd#;
+   pragma Export (C, u00092, "system__htableB");
+   u00093 : constant Version_32 := 16#a96723d2#;
+   pragma Export (C, u00093, "system__htableS");
+   u00094 : constant Version_32 := 16#089f5cd0#;
+   pragma Export (C, u00094, "system__string_hashB");
+   u00095 : constant Version_32 := 16#0b3948ac#;
+   pragma Export (C, u00095, "system__string_hashS");
+   u00096 : constant Version_32 := 16#1d9142a4#;
+   pragma Export (C, u00096, "system__val_unsB");
+   u00097 : constant Version_32 := 16#098b0180#;
+   pragma Export (C, u00097, "system__val_unsS");
+   u00098 : constant Version_32 := 16#b29d05bd#;
+   pragma Export (C, u00098, "system__file_ioB");
+   u00099 : constant Version_32 := 16#8ad4715d#;
+   pragma Export (C, u00099, "system__file_ioS");
+   u00100 : constant Version_32 := 16#cf417de3#;
+   pragma Export (C, u00100, "ada__finalizationS");
+   u00101 : constant Version_32 := 16#95817ed8#;
+   pragma Export (C, u00101, "system__finalization_rootB");
+   u00102 : constant Version_32 := 16#6257e3a8#;
+   pragma Export (C, u00102, "system__finalization_rootS");
+   u00103 : constant Version_32 := 16#9dd55695#;
+   pragma Export (C, u00103, "system__os_libB");
+   u00104 : constant Version_32 := 16#bf5ce13f#;
+   pragma Export (C, u00104, "system__os_libS");
+   u00105 : constant Version_32 := 16#1a817b8e#;
+   pragma Export (C, u00105, "system__stringsB");
+   u00106 : constant Version_32 := 16#531a815e#;
+   pragma Export (C, u00106, "system__stringsS");
+   u00107 : constant Version_32 := 16#d03a0a90#;
+   pragma Export (C, u00107, "system__file_control_blockS");
+   u00108 : constant Version_32 := 16#f6fdca1c#;
+   pragma Export (C, u00108, "ada__text_io__integer_auxB");
+   u00109 : constant Version_32 := 16#b9793d30#;
+   pragma Export (C, u00109, "ada__text_io__integer_auxS");
+   u00110 : constant Version_32 := 16#181dc502#;
+   pragma Export (C, u00110, "ada__text_io__generic_auxB");
+   u00111 : constant Version_32 := 16#a6c327d3#;
+   pragma Export (C, u00111, "ada__text_io__generic_auxS");
+   u00112 : constant Version_32 := 16#b10ba0c7#;
+   pragma Export (C, u00112, "system__img_biuB");
+   u00113 : constant Version_32 := 16#df0164f6#;
+   pragma Export (C, u00113, "system__img_biuS");
+   u00114 : constant Version_32 := 16#4e06ab0c#;
+   pragma Export (C, u00114, "system__img_llbB");
+   u00115 : constant Version_32 := 16#9ec67408#;
+   pragma Export (C, u00115, "system__img_llbS");
+   u00116 : constant Version_32 := 16#9dca6636#;
+   pragma Export (C, u00116, "system__img_lliB");
+   u00117 : constant Version_32 := 16#3ceac5e9#;
+   pragma Export (C, u00117, "system__img_lliS");
+   u00118 : constant Version_32 := 16#a756d097#;
+   pragma Export (C, u00118, "system__img_llwB");
+   u00119 : constant Version_32 := 16#37aa579e#;
+   pragma Export (C, u00119, "system__img_llwS");
+   u00120 : constant Version_32 := 16#eb55dfbb#;
+   pragma Export (C, u00120, "system__img_wiuB");
+   u00121 : constant Version_32 := 16#b140e364#;
+   pragma Export (C, u00121, "system__img_wiuS");
+   u00122 : constant Version_32 := 16#d763507a#;
+   pragma Export (C, u00122, "system__val_intB");
+   u00123 : constant Version_32 := 16#6500ba07#;
+   pragma Export (C, u00123, "system__val_intS");
+   u00124 : constant Version_32 := 16#152a6d4b#;
+   pragma Export (C, u00124, "hashB");
+   u00125 : constant Version_32 := 16#1d5c5565#;
+   pragma Export (C, u00125, "hashS");
    u00126 : constant Version_32 := 16#84ad4a42#;
    pragma Export (C, u00126, "ada__numericsS");
    u00127 : constant Version_32 := 16#03e83d1c#;
@@ -305,92 +305,52 @@ package ada_main is
    pragma Export (C, u00134, "system__exn_llfS");
    u00135 : constant Version_32 := 16#75d08c2c#;
    pragma Export (C, u00135, "system__fat_fltS");
-   u00136 : constant Version_32 := 16#5130abd7#;
-   pragma Export (C, u00136, "ada__strings__unboundedB");
-   u00137 : constant Version_32 := 16#4c956ffe#;
-   pragma Export (C, u00137, "ada__strings__unboundedS");
-   u00138 : constant Version_32 := 16#0b4a75ae#;
-   pragma Export (C, u00138, "ada__strings__searchB");
-   u00139 : constant Version_32 := 16#c1ab8667#;
-   pragma Export (C, u00139, "ada__strings__searchS");
-   u00140 : constant Version_32 := 16#5b9edcc4#;
-   pragma Export (C, u00140, "system__compare_array_unsigned_8B");
-   u00141 : constant Version_32 := 16#84a6e1b5#;
-   pragma Export (C, u00141, "system__compare_array_unsigned_8S");
-   u00142 : constant Version_32 := 16#5f72f755#;
-   pragma Export (C, u00142, "system__address_operationsB");
-   u00143 : constant Version_32 := 16#3ea92e0b#;
-   pragma Export (C, u00143, "system__address_operationsS");
-   u00144 : constant Version_32 := 16#6a86c9a5#;
-   pragma Export (C, u00144, "system__storage_pools__subpoolsB");
-   u00145 : constant Version_32 := 16#cc5a1856#;
-   pragma Export (C, u00145, "system__storage_pools__subpoolsS");
-   u00146 : constant Version_32 := 16#6abe5dbe#;
-   pragma Export (C, u00146, "system__finalization_mastersB");
-   u00147 : constant Version_32 := 16#7659a9f2#;
-   pragma Export (C, u00147, "system__finalization_mastersS");
-   u00148 : constant Version_32 := 16#7268f812#;
-   pragma Export (C, u00148, "system__img_boolB");
-   u00149 : constant Version_32 := 16#d87ce1d3#;
-   pragma Export (C, u00149, "system__img_boolS");
-   u00150 : constant Version_32 := 16#6d4d969a#;
-   pragma Export (C, u00150, "system__storage_poolsB");
-   u00151 : constant Version_32 := 16#0e480e95#;
-   pragma Export (C, u00151, "system__storage_poolsS");
-   u00152 : constant Version_32 := 16#9aad1ff1#;
-   pragma Export (C, u00152, "system__storage_pools__subpools__finalizationB");
-   u00153 : constant Version_32 := 16#fe2f4b3a#;
-   pragma Export (C, u00153, "system__storage_pools__subpools__finalizationS");
-   u00154 : constant Version_32 := 16#12218162#;
-   pragma Export (C, u00154, "system__atomic_countersB");
-   u00155 : constant Version_32 := 16#99f9bdb5#;
-   pragma Export (C, u00155, "system__atomic_countersS");
-   u00156 : constant Version_32 := 16#f4e1c091#;
-   pragma Export (C, u00156, "system__stream_attributesB");
-   u00157 : constant Version_32 := 16#8bc30a4e#;
-   pragma Export (C, u00157, "system__stream_attributesS");
-   u00158 : constant Version_32 := 16#fd83e873#;
-   pragma Export (C, u00158, "system__concat_2B");
-   u00159 : constant Version_32 := 16#2f0547e8#;
-   pragma Export (C, u00159, "system__concat_2S");
-   u00160 : constant Version_32 := 16#932a4690#;
-   pragma Export (C, u00160, "system__concat_4B");
-   u00161 : constant Version_32 := 16#53c1bb18#;
-   pragma Export (C, u00161, "system__concat_4S");
-   u00162 : constant Version_32 := 16#2b70b149#;
-   pragma Export (C, u00162, "system__concat_3B");
-   u00163 : constant Version_32 := 16#26d5cc9d#;
-   pragma Export (C, u00163, "system__concat_3S");
-   u00164 : constant Version_32 := 16#d5f9759f#;
-   pragma Export (C, u00164, "ada__text_io__float_auxB");
-   u00165 : constant Version_32 := 16#f854caf5#;
-   pragma Export (C, u00165, "ada__text_io__float_auxS");
-   u00166 : constant Version_32 := 16#8aa4f090#;
-   pragma Export (C, u00166, "system__img_realB");
-   u00167 : constant Version_32 := 16#ea0dc1da#;
-   pragma Export (C, u00167, "system__img_realS");
-   u00168 : constant Version_32 := 16#1b28662b#;
-   pragma Export (C, u00168, "system__float_controlB");
-   u00169 : constant Version_32 := 16#cd59d304#;
-   pragma Export (C, u00169, "system__float_controlS");
-   u00170 : constant Version_32 := 16#3e932977#;
-   pragma Export (C, u00170, "system__img_lluB");
-   u00171 : constant Version_32 := 16#50eaec78#;
-   pragma Export (C, u00171, "system__img_lluS");
-   u00172 : constant Version_32 := 16#7dd5f64f#;
-   pragma Export (C, u00172, "system__powten_tableS");
-   u00173 : constant Version_32 := 16#faa9a7b2#;
-   pragma Export (C, u00173, "system__val_realB");
-   u00174 : constant Version_32 := 16#d38ce729#;
-   pragma Export (C, u00174, "system__val_realS");
-   u00175 : constant Version_32 := 16#8ce72593#;
-   pragma Export (C, u00175, "system__direct_ioB");
-   u00176 : constant Version_32 := 16#8fc47606#;
-   pragma Export (C, u00176, "system__direct_ioS");
-   u00177 : constant Version_32 := 16#ee101ba4#;
-   pragma Export (C, u00177, "system__memoryB");
-   u00178 : constant Version_32 := 16#74d8f60c#;
-   pragma Export (C, u00178, "system__memoryS");
+   u00136 : constant Version_32 := 16#fd83e873#;
+   pragma Export (C, u00136, "system__concat_2B");
+   u00137 : constant Version_32 := 16#2f0547e8#;
+   pragma Export (C, u00137, "system__concat_2S");
+   u00138 : constant Version_32 := 16#932a4690#;
+   pragma Export (C, u00138, "system__concat_4B");
+   u00139 : constant Version_32 := 16#53c1bb18#;
+   pragma Export (C, u00139, "system__concat_4S");
+   u00140 : constant Version_32 := 16#2b70b149#;
+   pragma Export (C, u00140, "system__concat_3B");
+   u00141 : constant Version_32 := 16#26d5cc9d#;
+   pragma Export (C, u00141, "system__concat_3S");
+   u00142 : constant Version_32 := 16#d0432c8d#;
+   pragma Export (C, u00142, "system__img_enum_newB");
+   u00143 : constant Version_32 := 16#4ce996f8#;
+   pragma Export (C, u00143, "system__img_enum_newS");
+   u00144 : constant Version_32 := 16#d5f9759f#;
+   pragma Export (C, u00144, "ada__text_io__float_auxB");
+   u00145 : constant Version_32 := 16#f854caf5#;
+   pragma Export (C, u00145, "ada__text_io__float_auxS");
+   u00146 : constant Version_32 := 16#8aa4f090#;
+   pragma Export (C, u00146, "system__img_realB");
+   u00147 : constant Version_32 := 16#ea0dc1da#;
+   pragma Export (C, u00147, "system__img_realS");
+   u00148 : constant Version_32 := 16#1b28662b#;
+   pragma Export (C, u00148, "system__float_controlB");
+   u00149 : constant Version_32 := 16#cd59d304#;
+   pragma Export (C, u00149, "system__float_controlS");
+   u00150 : constant Version_32 := 16#3e932977#;
+   pragma Export (C, u00150, "system__img_lluB");
+   u00151 : constant Version_32 := 16#50eaec78#;
+   pragma Export (C, u00151, "system__img_lluS");
+   u00152 : constant Version_32 := 16#7dd5f64f#;
+   pragma Export (C, u00152, "system__powten_tableS");
+   u00153 : constant Version_32 := 16#faa9a7b2#;
+   pragma Export (C, u00153, "system__val_realB");
+   u00154 : constant Version_32 := 16#d38ce729#;
+   pragma Export (C, u00154, "system__val_realS");
+   u00155 : constant Version_32 := 16#8ce72593#;
+   pragma Export (C, u00155, "system__direct_ioB");
+   u00156 : constant Version_32 := 16#8fc47606#;
+   pragma Export (C, u00156, "system__direct_ioS");
+   u00157 : constant Version_32 := 16#ee101ba4#;
+   pragma Export (C, u00157, "system__memoryB");
+   u00158 : constant Version_32 := 16#74d8f60c#;
+   pragma Export (C, u00158, "system__memoryS");
    --  BEGIN ELABORATION ORDER
    --  ada%s
    --  ada.characters%s
@@ -398,9 +358,6 @@ package ada_main is
    --  ada.characters.latin_1%s
    --  interfaces%s
    --  system%s
-   --  system.address_operations%s
-   --  system.address_operations%b
-   --  system.atomic_counters%s
    --  system.case_util%s
    --  system.case_util%b
    --  system.exn_llf%s
@@ -408,8 +365,8 @@ package ada_main is
    --  system.float_control%s
    --  system.float_control%b
    --  system.htable%s
-   --  system.img_bool%s
-   --  system.img_bool%b
+   --  system.img_enum_new%s
+   --  system.img_enum_new%b
    --  system.img_int%s
    --  system.img_int%b
    --  system.img_lli%s
@@ -418,7 +375,6 @@ package ada_main is
    --  system.io%s
    --  system.io%b
    --  system.machine_code%s
-   --  system.atomic_counters%b
    --  system.parameters%s
    --  system.parameters%b
    --  system.crtl%s
@@ -484,8 +440,6 @@ package ada_main is
    --  system.address_image%s
    --  system.bit_ops%s
    --  system.bit_ops%b
-   --  system.compare_array_unsigned_8%s
-   --  system.compare_array_unsigned_8%b
    --  system.concat_2%s
    --  system.concat_2%b
    --  system.concat_3%s
@@ -503,8 +457,6 @@ package ada_main is
    --  ada.strings%s
    --  ada.strings.maps%s
    --  ada.strings.maps.constants%s
-   --  ada.strings.search%s
-   --  ada.strings.search%b
    --  ada.tags%s
    --  ada.streams%s
    --  ada.streams%b
@@ -517,14 +469,6 @@ package ada_main is
    --  system.finalization_root%s
    --  system.finalization_root%b
    --  ada.finalization%s
-   --  system.storage_pools%s
-   --  system.storage_pools%b
-   --  system.finalization_masters%s
-   --  system.storage_pools.subpools%s
-   --  system.storage_pools.subpools.finalization%s
-   --  system.storage_pools.subpools.finalization%b
-   --  system.stream_attributes%s
-   --  system.stream_attributes%b
    --  system.win32%s
    --  system.direct_io%s
    --  system.direct_io%b
@@ -536,8 +480,6 @@ package ada_main is
    --  system.object_reader%s
    --  system.dwarf_lines%s
    --  system.secondary_stack%s
-   --  system.storage_pools.subpools%b
-   --  system.finalization_masters%b
    --  system.file_io%b
    --  interfaces.c%b
    --  ada.tags%b
@@ -550,8 +492,6 @@ package ada_main is
    --  system.object_reader%b
    --  system.address_image%b
    --  ada.exceptions.traceback%b
-   --  ada.strings.unbounded%s
-   --  ada.strings.unbounded%b
    --  system.traceback%s
    --  system.traceback%b
    --  system.traceback.symbolic%s

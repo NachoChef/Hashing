@@ -8,8 +8,9 @@ RV NO_FLOATING_POINT
 RV NO_IO
 RV SPARK_05
 
-U main%b		main.adb		b13437c1 NE OO SU IL
+U main%b		main.adb		7da23710 NE OO SU IL
 W ada%s			ada.ads			ada.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W direct_io%s
 W hash%s		hash.adb		hash.ali
@@ -17,17 +18,19 @@ W hash%s		hash.adb		hash.ali
 D ada.ads		20160516092928 3ffc8e18 ada%s
 D a-direio.ads		20160516092928 5842da07 ada.direct_io%s
 D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-inteio.ads		20160516092932 f64b89a4 ada.integer_text_io%s
 D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
 D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
 D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
 D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
 D a-tiflio.ads		20160516092926 56fbda09 ada.text_io.float_io%s
+D a-tiinio.ads		20160516092928 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
 D directio.ads		20160516092928 fc913ad7 direct_io%s
-D hash.ads		20170426054208 a2459e50 hash%s
+D hash.ads		20170427035016 204b1560 hash%s
 D interfac.ads		20160516092928 5ab55268 interfaces%s
 D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
-D main.adb		20170426161144 d78d6692 main%b
+D main.adb		20170427034954 6f5e64d7 main%b
 D system.ads		20160516092930 2da59038 system%s
 D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
 D s-direio.ads		20160516092926 7c86ede3 system.direct_io%s
@@ -42,23 +45,19 @@ D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
 D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
 X 1 ada.ads
-16K9*Ada 19e8 14|1r6 1r34
-X 7 a-textio.ads
-49K13*Text_IO 471e16 14|1w10 1r38
-263U14*Put_Line 14|7s4 11s4 15s4 21s4
-X 10 directio.ads
-24k17*Direct_IO 14|1w19
-X 11 hash.ads
-5K9*hash 40e9 14|2w6 2r16 8r4 9r4 12r4 13r4 16r4 17r4 18r4 19r4 22r4 23r4
-. 24r4 25r4 26r4 27r4 28r4 29r4
-24n19*linear{24E9} 14|8r58 9r56 12r58 13r56 22r58 23r58 26r58 27r58
-24n27*random{24E9} 14|16r58 17r58 18r58 19r58 24r58 25r58 28r58 29r58
-25n18*mine{25E9} 14|22r66 23r66 24r66 25r66 26r66 27r66 28r66 29r66
-25n24*yours{25E9} 14|8r66 9r64 12r66 13r64 16r66 17r66 18r66 19r66
-26n28*memory{26E9} 14|8r73 12r73 16r73 17r73 22r72 23r72 24r72 25r72
-26n36*file{26E9} 14|9r71 13r71 18r73 19r73 26r72 27r72 28r72 29r72
-32U14*slingHash 14|8s9 9s9 12s9 13s9 16s9 17s9 18s9 19s9 22s9 23s9 24s9 25s9
-. 26s9 27s9 28s9 29s9
-X 14 main.adb
-4U11*main 4b11 30l5 30t9
+16K9*Ada 19e8 16|6r6 6r34 7r6 7r31
+X 4 a-inteio.ads
+18K13*Integer_Text_IO[10|46] 16|7w10 7r35
+X 8 a-textio.ads
+49K13*Text_IO 471e16 16|6w10 6r38
+X 12 directio.ads
+24k17*Direct_IO 16|6w19
+X 13 hash.ads
+10K9*hash 57e9 16|8w6 8r16 14r4
+29n19*linear{29E9} 16|14r58
+30n24*yours{30E9} 16|14r66
+31n28*memory{31E9} 16|14r73
+40U14*slingHash 16|14s9
+X 16 main.adb
+10U11*main 10b11 36l5 36t9
 

@@ -1,3 +1,8 @@
+--Justin Jones
+--COSC 3319.01 Spring 2017
+--Lab 4
+--
+--'A' Option 1
 with Ada.Text_IO; use Ada.Text_IO;
 with direct_io;
 with Ada.Unchecked_Conversion;
@@ -29,12 +34,21 @@ package hash is
    function char2Uns is new Ada.Unchecked_Conversion(character, Unsigned_64);
    function uns2Int is new Ada.Unchecked_Conversion(Unsigned_64, Integer);
    function Int2Uns is new Ada.Unchecked_Conversion(Integer, Unsigned_64);
-   procedure slingHash(inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash; loc : implementation);
-   procedure mainMem (inFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash);
-   procedure file (inFile : String; outFile : String; size : Integer; percentFull : Float; probeType : probe; hashType : hash);
-   procedure getAvg(input : hashIO.File_Type; myTable : hashTable; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash);
-   procedure getAvg(input : hashIO.File_Type; storage : outIO.File_Type; lower : Integer; upper : Integer; size : Integer; probeType : probe; hashType : hash);
+   procedure slingHash(inFile : String; outFile : String; size : Integer; 
+                       percentFull : Float; probeType : probe; hashType : hash; 
+                       loc : implementation);
+   procedure mainMem (inFile : String; size : Integer; percentFull : Float; 
+                      probeType : probe; hashType : hash);
+   procedure file (inFile : String; outFile : String; size : Integer; 
+                   percentFull : Float; probeType : probe; hashType : hash);
+   procedure getAvg(input : hashIO.File_Type; storage : outIO.File_Type; 
+                    myTable : hashTable; lower : Integer; upper : Integer; 
+                    size : Integer; probeType : probe; hashType : hash;
+                    location : implementation);
    procedure getTheor (size : Integer; keys : Integer; probeType : probe);
    function getKey (Item : hElement) return Integer;
    function myKey (Item : hElement; TS : Integer) return Integer;
+   --for average
+   eTable : hashTable(1..2);
+   eFile : outIO.File_Type;
 end hash;
